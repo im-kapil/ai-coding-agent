@@ -6,6 +6,9 @@ from models.qwen2 import Qwen2
 from typing import Any
 from utils.loggers import Logger
 import json
+from prompts.planner_prompt import planner_prompt
+
+
 class Planner: 
     def __init__(self):
         self.logger = Logger(__file__)
@@ -15,8 +18,14 @@ class Planner:
         self.logger.log("executing [create_plan]")
         # LLm
         llm = Qwen2()
-        chat_response = llm.process_query(prompt, [])
         
+        prompt_formatted = planner_prompt.format(
+        user_query=prompt,
+        tools_list="create_file"
+    )
+        
+        chat_response = llm.process_query(prompt_formatted, [])
+                
         for line in chat_response.iter_lines():
             if line:
                 chunk = json.loads(line)
