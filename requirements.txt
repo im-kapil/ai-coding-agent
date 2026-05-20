@@ -1,0 +1,16 @@
+fastapi
+uvicorn
+langgraph
+langchain
+pydantic
+structlog
+openai
+anthropic
+redis
+qdrant-client
+python-dotenv
+langchain_ollama
+aiofiles
+mcp
+langchain-mcp-adapters
+langchain_nvidia_ai_endpoints
